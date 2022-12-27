@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tienda Molls - envios</title>
+
+        <link rel="stylesheet" href="/css/admin.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    </head>
+
+    <body class="estilo">
+        <header th:replace="layout/plantilla :: header"></header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <p class="fs-1 fw-bolder">Métodos de envío</p>
+
+                    <p class="fs-3 fst-normal">ELEGI LA MEJOR FORMA PARA RECIBIR TU PEDIDO:</p>
+
+                    <li class="fs-4">Envío a domicilio:</li>
+
+                    <p class="text-start text-muted">Realizamos envíos a domicilio sólo en la República Argentina. Te recomendamos
+                        elegir un
+                        domicilio en el que pueda haber una persona de mayor de edad para recibir el pedido entre las 9:00
+                        hs y las
+                        18:00 hs de Lunes a Sábado, exceptuando feriados nacionales. No hace falta que lo reciba el titular
+                        de la
+                        compra.</p>
+
+                    <li class="fs-4">Retiro por sucursales Andreani:</li>
+
+                    <p class="text-start text-muted">También podés optar por que te enviemos el pedido a una sucursal de Andreani.
+                        Podrás
+                        elegir la sucursal que más te convenga en el proceso de checkout, antes de realizar el pago. Una vez
+                        realizada la compra, recibirás un mail con tu número de pedido y al ser despachado, recibirás el
+                        número de
+                        seguimiento de tu envío.</p>
+
+                    <p class="fs-3">¿Cuánto tarda en llegar mi pedido?</p>
+
+                    <p class="text-start text-muted">Una vez que tu pago fue acreditado, tu pedido se despacha dentro de las 48 horas
+                        hábiles.
+                        Los tiempos estimados de correo pueden variar entre 1 y 10 días hábiles (dependiendo de la zona y
+                        otras
+                        variables ajenas a Equus). Pudiendo elevarse en fechas promocionales como Hot Sale y Cyber Monday.
+                        De todas
+                        formas, se brinda un número para realizar el seguimiento online.</p>
+
+                    <p class="fs-3">¿Cuál es el costo de envío?</p>
+
+                    <p class="text-start text-muted">El costo varía según la zona y el método que elijas. Lo podrás ver durante proceso
+                        de
+                        checkout, antes de realizar el pago.</p>
+
+                    <p class="fs-3">ENVÍOS A DOMICILIO</p>
+
+                    <p class="text-start text-muted">Hacemos envíos a todo el país por correo Andreani.</p>
+
+                    <p class="fs-3">¿DENTRO DE QUE HORARIO SE EFECTÚAN LAS ENTREGAS?</p>
+
+                    <p class="text-start text-muted">Las entregas se efectúan de 9:00 hs a 18:00 hs de Lunes a Sábado, exceptuando los
+                        feriados
+                        nacionales.</p>
+
+                    <p class="fs-3">¿EN QUÉ PAÍSES SE PUEDE COMPRAR ONLINE?</p>
+
+                    <p class="text-start text-muted">Actualmente podes hacer tu compra para entrega en Argentina. ¡Recordá que todos
+                        los envíos
+                        tienen seguimiento online!</p>
+                </div>
+            </div>
+        </div>
+
+        <footer th:replace="layout/plantilla :: footer"></footer>
+        <section th:replace="layout/plantilla :: js"></section>
+
+    </body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/css/admin.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-4 offset-4 text-center">
+                    <h1>Datos del Stock</h1>
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <a th:href="@{/producto/listar}" class="btn btn-block btn-secondary col-4 offset-4">Regresar</a>
+            </div>
+            <div class="row">
+
+
+
+                <div class="col-6 text-center">
+                    <div class="row">
+                        <div class="col-6 offset-3">
+                            <form th:action="@{/stock/guardar}" method="post" th:object="${stock}" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <input type="hidden" name="idStock" th:field="*{idStock}"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="producto" class="form-label fw-bold fs-5">Producto:</label> <br>
+                                    <select name="producto" >
+                                        <option th:each="producto : ${productos}"
+                                            th:value="${producto.idProducto}" th:text="${producto.descripcion}" th:field="*{producto}">Descripcion</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="color_producto" class="form-label fw-bold fs-5">Color:</label> <br>
+                                    <select name="color_producto" >
+                                        <option th:each="color : ${colores}"
+                                            th:value="${color.idColor}" th:text="${color.nombre_color}" th:field="*{color_producto}">Descripcion</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="talle_producto" class="form-label fw-bold fs-5">Talle:</label> <br>
+                                    <select name="talle_producto" >
+                                        <option th:each="talle : ${talles}"
+                                            th:value="${talle.idTalle}" th:text="${talle.descripcion}" th:field="*{talle_producto}">Descripcion</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cantidad" class="form-label fw-bold fs-5">Cantidad de productos:</label> <br>
+                                    <input type="number" name="cantidad" th:field="*{stock_actual}" class="form-control"/>
+                                </div>
+                                
+                                
+                                
+                                
+                                
+                                <br>
+                                <button type="submit" name="guardar" class="btn btn-danger btn-lg"> <i class="far fa-save"></i> Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-6 text-center">
+                    <section th:replace="listaStocks :: listaStocks"></section>
+                </div>
+            </div>
+            
+        </div>
+
+
+    <footer th:replace="layout/plantilla :: footer"></footer>
+    <section th:replace="layout/plantilla :: js"></section>
+</body>
+</html>
+

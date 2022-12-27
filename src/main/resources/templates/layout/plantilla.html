@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Moll's</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    </head>
+    <body>
+        <header th:fragment="header">
+
+            <div class="fixed-top">
+                <nav class="navbar navbar-light navbar-expand-lg bg-danger">
+                    <div class="container-fluid">
+                        <a class="navbar-brand fs-4 letra ms-5" th:href="@{/}"><img src="/img/logo.png"><br>Moll's</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                             aria-labelledby="offcanvasNavbarLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                                    <li class="nav-item">
+                                        <a  class="text-light fs-4" th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre}"></a>
+                                        <a  class="text-light fs-4" sec:authorize="hasRole('ROLE_ADMIN')" ></a>
+                                    </li>
+
+
+                                    <li class="nav-item">
+                                        <a th:if="${session.usuariosession != null}" th:src="${session.usuariosession.foto}"></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" th:href="@{/login}" class="btn"  data-bs-toggle="modal" data-bs-target="#inicio" th:if="${session.usuariosession == null}">
+                                            <i class="fa-solid fa-circle-user"></i>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="btn"  data-bs-toggle="modal" data-bs-target="#carrito">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                                <form class="d-flex">
+                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+
+
+                <ul class="nav bg-secondary  justify-content-center fs-4">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white fuente" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Hombres
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item fuente" th:href="@{/stock/listarPorGenero/} + 1">Todos los productos</a></li>
+                            <div th:each="modelo : ${modelos}">
+                                <li><a class="dropdown-item fuente" th:href="@{/stock/listarModelosHombres/} + ${modelo.idModelo}" th:text="${modelo.descripcion}">Modelo</a></li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white fuente" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Mujeres
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item fuente" th:href="@{/stock/listarPorGenero/} + 2">Todos los productos</a></li>
+                            <div th:each="modelo : ${modelos}">
+                                <li><a class="dropdown-item fuente" th:href="@{/stock/listarModelosMujeres/} + ${modelo.idModelo}" th:text="${modelo.descripcion}">Modelo</a></li>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white fuente" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Kids
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item fuente" th:href="@{/stock/listarPorGenero/} + 3">Todos los productos</a></li>
+                            <div th:each="modelo : ${modelos}">
+                                <li><a class="dropdown-item fuente" th:href="@{/stock/listarModelosKids/} + ${modelo.idModelo}" th:text="${modelo.descripcion}">Modelo</a></li>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <section th:replace="inicioSesion :: inicioSesion"></section>
+            <section th:replace="modalCarrito :: modalCarrito"></section>
+        </header>
+
+
+        <footer th:fragment="footer" class="bg-danger opacity-75 text-black mt-5 p-5">
+            <div class="container">
+                <div class="col">
+                    <p class="lead text-center">
+                        <span>Derechos reservados &copy; Egg-3</span>
+                    </p>
+                </div>
+            </div>
+            <div class="text-end">
+                <form method="POST" th:action="@{/logout}">
+                    <a href="#" onclick="this.parentNode.submit();" class="btn btn-outline-dark">Logout</a>
+                </form>
+            </div>
+        </footer>
+
+        <section th:fragment="js">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+            crossorigin="anonymous"></script>
+            <script src="https://kit.fontawesome.com/a4f65283d7.js" crossorigin="anonymous"></script>
+        </section>
+    </body>
+</html>
